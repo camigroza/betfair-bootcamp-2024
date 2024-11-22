@@ -10,10 +10,10 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(nullable = false)
-    private String roomType;
+    private String type;
 
     @Column(nullable = false)
     private String state;
