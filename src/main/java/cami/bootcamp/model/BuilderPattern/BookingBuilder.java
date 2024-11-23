@@ -36,23 +36,23 @@ public class BookingBuilder {
         return this;
     }
 
-    public BookingBuilder includeBreakfast() {
-        this.breakfastIncluded = true;
+    public BookingBuilder includeBreakfast(boolean breakfastIncluded) {
+        this.breakfastIncluded = breakfastIncluded;
         return this;
     }
 
-    public BookingBuilder includeDinner() {
-        this.dinnerIncluded = true;
+    public BookingBuilder includeDinner(boolean dinnerIncluded) {
+        this.dinnerIncluded = dinnerIncluded;
         return this;
     }
 
-    public BookingBuilder includeSpa() {
-        this.spaAccess = true;
+    public BookingBuilder includeSpa(boolean spaAccess) {
+        this.spaAccess = spaAccess;
         return this;
     }
 
-    public BookingBuilder includeAirportPickup() {
-        this.airportPickup = true;
+    public BookingBuilder includeAirportPickup(boolean airportPickup) {
+        this.airportPickup = airportPickup;
         return this;
     }
 

@@ -29,31 +29,36 @@ public class RoomService {
         return roomRepository.findById(roomId).orElseThrow(() -> new BadRoomRequestException("Room not found"));
     }
 
-    public void reserveRoom(Long roomId) throws BadRoomRequestException {
+    public Room reserveRoom(Long roomId) throws BadRoomRequestException {
         Room room = roomRepository.findById(roomId).orElseThrow(() -> new BadRoomRequestException("Room not found"));
         RoomContext context = new RoomContext(room);
         context.reserve();
-        roomRepository.save(room);
+        return roomRepository.save(room);
     }
 
-    public void checkInRoom(Long roomId) throws BadRoomRequestException {
+    public Room checkInRoom(Long roomId) throws BadRoomRequestException {
         Room room = roomRepository.findById(roomId).orElseThrow(() -> new BadRoomRequestException("Room not found"));
         RoomContext context = new RoomContext(room);
         context.checkIn();
-        roomRepository.save(room);
+        return roomRepository.save(room);
     }
 
-    public void checkOutRoom(Long roomId) throws BadRoomRequestException {
+    public Room checkOutRoom(Long roomId) throws BadRoomRequestException {
         Room room = roomRepository.findById(roomId).orElseThrow(() -> new BadRoomRequestException("Room not found"));
         RoomContext context = new RoomContext(room);
         context.checkOut();
-        roomRepository.save(room);
+        return roomRepository.save(room);
     }
 
-    public void makeRoomAvailable(Long roomId) throws BadRoomRequestException {
+    public Room makeRoomAvailable(Long roomId) throws BadRoomRequestException {
         Room room = roomRepository.findById(roomId).orElseThrow(() -> new BadRoomRequestException("Room not found"));
         RoomContext context = new RoomContext(room);
         context.makeAvailable();
-        roomRepository.save(room);
+        return roomRepository.save(room);
+    }
+
+    public void deleteRoom(Long roomId) {
+        roomRepository.findById(roomId)
+                .ifPresent(roomRepository::delete);
     }
 }

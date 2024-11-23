@@ -1,11 +1,12 @@
 package cami.bootcamp.model.StatePattern;
 
 import cami.bootcamp.model.Room;
+import cami.bootcamp.model.exception.BadRoomRequestException;
 
 public interface RoomState {
 
-    void reserve(Room room);
-    void checkIn(Room room);
-    void checkOut(Room room);
-    void makeAvailable(Room room);
+    void reserve(Room room) throws BadRoomRequestException;
+    void checkIn(Room room) throws BadRoomRequestException;
+    void checkOut(Room room) throws BadRoomRequestException;
+    void makeAvailable(Room room) throws BadRoomRequestException;
 }

@@ -1,6 +1,7 @@
 package cami.bootcamp.model.StatePattern;
 
 import cami.bootcamp.model.Room;
+import cami.bootcamp.model.exception.BadRoomRequestException;
 
 public class AvailableState implements RoomState {
     @Override
@@ -10,13 +11,13 @@ public class AvailableState implements RoomState {
     }
 
     @Override
-    public void checkIn(Room room) {
-        throw new UnsupportedOperationException("Cannot check in to an available room directly.");
+    public void checkIn(Room room) throws BadRoomRequestException {
+        throw new BadRoomRequestException("Cannot check in to an available room directly.");
     }
 
     @Override
-    public void checkOut(Room room) {
-        throw new UnsupportedOperationException("Cannot check out an available room.");
+    public void checkOut(Room room) throws BadRoomRequestException {
+        throw new BadRoomRequestException("Cannot check out an available room.");
     }
 
     @Override

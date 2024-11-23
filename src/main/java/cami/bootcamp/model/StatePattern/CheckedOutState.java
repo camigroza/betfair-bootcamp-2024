@@ -1,21 +1,22 @@
 package cami.bootcamp.model.StatePattern;
 
 import cami.bootcamp.model.Room;
+import cami.bootcamp.model.exception.BadRoomRequestException;
 
 public class CheckedOutState implements RoomState {
     @Override
-    public void reserve(Room room) {
-        throw new UnsupportedOperationException("Room is being prepared and cannot be reserved yet.");
+    public void reserve(Room room) throws BadRoomRequestException {
+        throw new BadRoomRequestException("Room is being prepared and cannot be reserved yet.");
     }
 
     @Override
-    public void checkIn(Room room) {
-        throw new UnsupportedOperationException("Cannot check into a room that is checked out and being prepared.");
+    public void checkIn(Room room) throws BadRoomRequestException {
+        throw new BadRoomRequestException("Cannot check into a room that is checked out and being prepared.");
     }
 
     @Override
-    public void checkOut(Room room) {
-        throw new UnsupportedOperationException("Room is already checked out.");
+    public void checkOut(Room room) throws BadRoomRequestException {
+        throw new BadRoomRequestException("Room is already checked out.");
     }
 
     @Override

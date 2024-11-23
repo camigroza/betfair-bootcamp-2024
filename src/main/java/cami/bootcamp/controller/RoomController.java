@@ -6,6 +6,7 @@ import cami.bootcamp.model.exception.BadRoomRequestException;
 import cami.bootcamp.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class RoomController {
     private final RoomService roomService;
 
     @PostMapping
-    public Room createRoom(@RequestBody RoomDto roomToCreate) {
+    public Room createRoom(@RequestBody @Validated RoomDto roomToCreate) {
         return roomService.createRoom(roomToCreate);
     }
 
@@ -28,8 +29,34 @@ public class RoomController {
     }
 
     @GetMapping("/{roomId}")
-    public Room getRoom(@PathVariable Long roomId) throws BadRoomRequestException {
+    public Room getRoomById(@PathVariable Long roomId) throws BadRoomRequestException {
         return roomService.getRoomById(roomId);
+    }
+
+    @DeleteMapping("/{roomId}")
+    public String deleteRoom(@PathVariable Long roomId) {
+        roomService.deleteRoom(roomId);
+        return "Room deleted successfully";
+    }
+
+    @PutMapping("/reserve/{roomId}")
+    public Room reserveRoom(@PathVariable Long roomId) throws BadRoomRequestException {
+        return roomService.reserveRoom(roomId);
+    }
+
+    @PutMapping("/check-in/{roomId}")
+    public Room checkInRoom(@PathVariable Long roomId) throws BadRoomRequestException {
+        return roomService.checkInRoom(roomId);
+    }
+
+    @PutMapping("/check-out/{roomId}")
+    public Room checkOutRoom(@PathVariable Long roomId) throws BadRoomRequestException {
+        return roomService.checkOutRoom(roomId);
+    }
+
+    @PutMapping("/make-available/{roomId}")
+    public Room makeRoomAvailable(@PathVariable Long roomId) throws BadRoomRequestException {
+        return roomService.makeRoomAvailable(roomId);
     }
 
     @ExceptionHandler(BadRoomRequestException.class)
